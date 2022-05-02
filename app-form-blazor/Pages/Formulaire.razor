@@ -1,0 +1,108 @@
+﻿@page "/formulaire"
+@inherits FormulaireBase
+
+<h3>Formulaire</h3>
+<main>
+    <div class="col-md-8 ">
+        <EditForm OnValidSubmit="Validate" Model="user">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-row">
+                <div class="form-group col-md-3 mt-1">
+                    <label for="nom">Nom :</label>
+                    <InputText type="text" class="form-control" id="nom" placeholder="Deschamps" @bind-Value="user.Nom" />
+                    <small>
+                        <ValidationMessage For="() => user.Nom" />
+                    </small>
+                </div>
+                <div class="form-group col-md-4 mt-1">
+                    <label for="email">Email :</label>
+                    <InputText type="email" class="form-control" id="email" placeholder="deschamps.coach@gmail.com" @bind-Value="user.Email" />
+                    <small>
+                        <ValidationMessage For="() => user.Email" />
+                    </small>
+                </div>
+            </div>
+            <div class="form-row mt-1">
+                <div class="form-group col-md-3 mt-1">
+                    <label for="adresse">Adresse</label>
+                    <InputText type="text" class="form-control" id="adresse" placeholder="454 rue de la gare Lille" @bind-Value="user.Adresse" />
+                    <small>
+                        <ValidationMessage For="() => user.Adresse" />
+                    </small>
+                </div>
+                <div class="form-group col-md-3 mt-1">
+                    <label for="codePostal">Code Postal</label>
+                    <InputText type="text" class="form-control" id="codePostal" placeholder="78000" @bind-Value="user.CodePostal" />
+                    <small>
+                        <ValidationMessage For="() => user.CodePostal" />
+                    </small>
+                </div>
+            </div>
+            <div class="form-row mt-1">
+                <div class="form-group col-md-3 mt-1">
+                    <label for="age">Age</label>
+                    <InputNumber type="number" class="form-control" id="age" placeholder="Entre 1 et 125 ans" @bind-Value="user.Age" />
+                    <small>
+                        <ValidationMessage For="() => user.Age" />
+                    </small>
+                </div>
+                <div class="form-group col-md-3 mt-1">
+                    <label for="dateDeNaissance">Votre date de Naissance</label>
+                    <InputDate type="Date" class="form-control" id="dateDeNaissance" placeholder="Votre date de naissance" @bind-Value="user.DateDeNaissance" />
+                    <small>
+                        <ValidationMessage For="() => user.DateDeNaissance" />
+                    </small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-row mt-1">
+                    <label for="isMarried">Marié ?</label>
+                    <InputCheckbox class="form-control" id="isMarried" @bind-Value="user.IsMarried" />
+                    <small>
+                        <ValidationMessage For="() => user.IsMarried" />
+                    </small>
+                </div>
+            </div>
+            <div class="form-row mt-1">
+                <label for="favoritcolor">Couleur favorite: </label><br />
+
+                <InputSelect name="favoritColor" id="favoritColor" placeholder="Selectionnez une couleur" @bind-Value="user.Favoritcolor">
+                    <option value="bleu" selected>Bleu</option>
+                    <option value="Jaune">Jaune</option>
+                    <option value="Vert">Vert</option>
+                    <option value="rouge">Rouge</option>
+                    <option value="noir">Noir</option>
+                    <option value="blanc">Blanc</option>
+                    <option value="ocre">Ocre</option>
+                    <option value="azure">Azure</option>
+                </InputSelect>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Validation</button>
+        </EditForm>
+
+    </div>
+    @if (afficheCheck)
+    {
+    <div class="card" style="width: 18rem;">
+        <div class="card-header btn btn-primary">
+            Résultat
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nom : @user.Nom</li>
+            <li class="list-group-item">Email : @user.Email</li>
+            <li class="list-group-item">Adresse :@user.Adresse</li>
+            <li class="list-group-item"> Age : @user.Age</li>
+            <li class="list-group-item">Date de naissance : @user.DateDeNaissance</li>
+            <li class="list-group-item"> Etes vous marié : @user.CheckingMaritalStatus()</li>
+            <li class="list-group-item">Votre couleur favorite : @user.Favoritcolor</li>
+        </ul>
+    </div>
+    }
+
+
+</main>
+    
